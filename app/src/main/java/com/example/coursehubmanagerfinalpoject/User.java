@@ -14,6 +14,11 @@ public class User {
     private String email;
     @ColumnInfo(name = "user_password")
     private String password;
+    public User(String email, String passwored,String name) {
+        this.email = email;
+        this.password = passwored;
+        this.name=name;
+    }
 
     public User(long id, String name, String email, String password) {
         this.id = id;

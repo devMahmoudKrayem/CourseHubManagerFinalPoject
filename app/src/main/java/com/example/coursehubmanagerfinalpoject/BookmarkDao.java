@@ -13,7 +13,7 @@ public interface BookmarkDao {
     @Insert
     long insertBookmark (Bookmark bookmark);
     @Update
-    long updateBookmark (Bookmark bookmark);
+    int updateBookmark (Bookmark bookmark);
     @Query("select * from bookmark")
     List<Bookmark> getAllBookmark();
     @Delete

@@ -13,7 +13,7 @@ public interface MyCoursesDao {
     @Insert
     long insertMyCourses (MyCourses myCourses);
     @Update
-    long updateMyCourses (MyCourses myCourses);
+    int updateMyCourses (MyCourses myCourses);
     @Query("select * from mycourses")
     List<MyCourses> getAllMyCourses();
     @Delete

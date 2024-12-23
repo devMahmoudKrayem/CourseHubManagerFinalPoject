@@ -13,7 +13,7 @@ public interface CategoriesDao {
     @Insert
     long insertCategories (Categories categories);
     @Update
-    long updateCategories (Categories categories);
+    int updateCategories (Categories categories);
     @Query("select * from table_categories")
     List<Categories> getAllCategories();
     @Delete

@@ -13,7 +13,7 @@ public interface LessonsDao {
     @Insert
     long insertLessons (Lessons lessons);
     @Update
-    long updateLessons (Lessons lessons);
+    int updateLessons (Lessons lessons);
     @Query("select * from Lessons")
     List<Lessons> getAllLessons();
     @Delete

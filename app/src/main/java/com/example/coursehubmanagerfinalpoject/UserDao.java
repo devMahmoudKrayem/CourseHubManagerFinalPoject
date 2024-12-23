@@ -13,7 +13,7 @@ public interface UserDao {
     @Insert
     long insertUser (User user);
     @Update
-    long updateUser (User User);
+    int  updateUser (User User);
     @Query("select * from table_user")
     List<User>getAlluseres();
     @Delete

@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(foreignKeys = {@ForeignKey(entity = User.class,parentColumns = {"id"},childColumns = {"user_id"})
+@Entity(foreignKeys = {@ForeignKey(entity = User.class,parentColumns = {"id"},childColumns = {"id_user"})
         ,@ForeignKey(entity = Courses.class,parentColumns = {"courses_id"},childColumns = {"id_course"})})
 public class Bookmark {
     @PrimaryKey(autoGenerate = true)
