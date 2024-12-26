@@ -3,6 +3,7 @@ package com.example.coursehubmanagerfinalpoject;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(foreignKeys = @ForeignKey(entity = Categories.class,parentColumns ={"id_category"},childColumns = {"category_id"}))
@@ -25,6 +26,18 @@ public class Courses {
     private String image_course;
     @ColumnInfo(name = "category_id")
     private long category_id;
+
+    @Ignore
+    public Courses(String image_course, String num_of_hours, String num_of_students, String price_course, String instructor_name, String topic, String name_course,long category_id) {
+        this.image_course = image_course;
+        this.num_of_hours = num_of_hours;
+        this.num_of_students = num_of_students;
+        this.price_course = price_course;
+        this.instructor_name = instructor_name;
+        this.topic = topic;
+        this.name_course = name_course;
+        this.category_id=category_id;
+    }
 
     public Courses(long courses_id, String name_course, String topic, String instructor_name, String price_course, String num_of_students, String num_of_hours, String image_course, long category_id) {
         this.courses_id = courses_id;

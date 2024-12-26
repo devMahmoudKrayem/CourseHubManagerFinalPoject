@@ -1,5 +1,6 @@
 package com.example.coursehubmanagerfinalpoject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -50,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
                 String email=binding.edEmail.getText().toString();
                 String password =binding.edPssword.getText().toString();
                 if (email.equals("admin")&&password.equals("admin")){
+
+                    Intent intent = new Intent(MainActivity.this,DashboardActivity.class);
+                    startActivity(intent);
+
                     Toast.makeText(MainActivity.this, "Admin", Toast.LENGTH_SHORT).show();
                 }
                 if (email.isEmpty()||password.isEmpty()){
@@ -65,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (loginSuccess){
+                    Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+                    startActivity(intent);
+
                     Toast.makeText(MainActivity.this, "loginSuccess", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(MainActivity.this, "Invalid Login Credentials", Toast.LENGTH_SHORT).show();
