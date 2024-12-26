@@ -28,6 +28,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:hint="Pssword"/>
+    <CheckBox
+        android:id="@+id/remember_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember Me"/>
     <Button
         android:id="@+id/bt_login"
         android:layout_width="150dp"

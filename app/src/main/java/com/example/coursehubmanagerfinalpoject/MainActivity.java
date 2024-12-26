@@ -1,6 +1,7 @@
 package com.example.coursehubmanagerfinalpoject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -39,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
         appDataBase= AppDataBase.getDatabase(this);
         userList =new ArrayList<>();
         userList.addAll(appDataBase.userDao().getAlluseres());
+        SharedPreferences sharedPreferences=getSharedPreferences("login",MODE_PRIVATE);
+        String save_email=sharedPreferences.getString("email","");
+        String save_password=sharedPreferences.getString("password","");
+        if (!save_email.isEmpty()&&!save_password.isEmpty()){
+            binding.edEmail.setText(save_email);
+            binding.edPssword.setText(save_password);
+            binding.rememberMe.setChecked(true);
+        }
+
         binding.btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (loginSuccess){
+                    rememberMe(email,password);
                     Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                     startActivity(intent);
 
@@ -122,5 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
         dialog = builder.create();
         dialog.show();
+    }
+    private void rememberMe (String email,String password){
+        if (binding.rememberMe.isChecked()){
+            SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+            SharedPreferences.Editor editor= sharedPreferences.edit();
+            editor.putString("email",email);
+            editor.putString("password",password);
+            editor.apply();
+        }
     }
 }
