@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -30,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding=ActivityMainBinding.inflate(getLayoutInflater());
+        SharedPreferences sharedPreferences1=getSharedPreferences("login",MODE_PRIVATE);
+        boolean remember =sharedPreferences1.getBoolean("Remember Me",false);
+        if (remember){
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            finish();
+        }
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -43,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences=getSharedPreferences("login",MODE_PRIVATE);
         String save_email=sharedPreferences.getString("email","");
         String save_password=sharedPreferences.getString("password","");
-        if (!save_email.isEmpty()&&!save_password.isEmpty()){
-            binding.edEmail.setText(save_email);
-            binding.edPssword.setText(save_password);
-            binding.rememberMe.setChecked(true);
-        }
+//        if (!save_email.isEmpty()&&!save_password.isEmpty()){
+//            binding.edEmail.setText(save_email);
+//            binding.edPssword.setText(save_password);
+//            binding.rememberMe.setChecked(true);
+//        }
 
         binding.btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email=binding.edEmail.getText().toString();
                 String password =binding.edPssword.getText().toString();
+                String name ="";
                 if (email.equals("admin")&&password.equals("admin")){
 
                     Intent intent = new Intent(MainActivity.this,DashboardActivity.class);
@@ -74,13 +82,14 @@ public class MainActivity extends AppCompatActivity {
                 boolean loginSuccess = false;
                 for (User user: userList){
                     if (user.getEmail().equals(email)&&user.getPassword().equals(password)){
+                        name=user.getName();
                         loginSuccess =true;
                         break;
 
                     }
                 }
                 if (loginSuccess){
-                    rememberMe(email,password);
+                    rememberMe(email,password,name);
                     Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                     startActivity(intent);
 
@@ -90,6 +99,17 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
+            }
+        });
+        binding.rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+                SharedPreferences.Editor editor= sharedPreferences.edit();
+                editor.putBoolean("Remember Me",b);
+                editor.apply();
+
             }
         });
     }
@@ -134,12 +154,13 @@ public class MainActivity extends AppCompatActivity {
         dialog = builder.create();
         dialog.show();
     }
-    private void rememberMe (String email,String password){
+    private void rememberMe (String email,String password,String name){
         if (binding.rememberMe.isChecked()){
             SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
             SharedPreferences.Editor editor= sharedPreferences.edit();
             editor.putString("email",email);
             editor.putString("password",password);
+            editor.putString("name",name);
             editor.apply();
         }
     }

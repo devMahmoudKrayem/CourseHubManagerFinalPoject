@@ -16,6 +16,8 @@ public interface UserDao {
     int  updateUser (User User);
     @Query("select * from table_user")
     List<User>getAlluseres();
+    @Query("select * from table_user where user_email=:email and user_password=:password")
+   User getusere(String email,String password);
     @Delete
     int deleteUsers(User user);
 
