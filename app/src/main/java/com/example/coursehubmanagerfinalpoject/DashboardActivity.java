@@ -1,6 +1,8 @@
 package com.example.coursehubmanagerfinalpoject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,8 +26,14 @@ public class DashboardActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        binding.AddCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                startActivity(new Intent(DashboardActivity.this,AddCourseActivity.class));
 
+            }
+        });
 
     }
 }

@@ -16,6 +16,8 @@ public interface CoursesDao {
     int updateCourse (Courses courses);
     @Query("select * from Courses")
     List<Courses> getAllCourses();
+    @Query("select * from Courses where category_id=:cat_id")
+    List<Courses> getAllCoursesbycat(long cat_id);
     @Delete
     int deleteCourse(Courses courses);
 

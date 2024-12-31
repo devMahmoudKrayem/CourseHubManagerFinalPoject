@@ -25,10 +25,10 @@ public class Courses {
     @ColumnInfo(name = "image_course")
     private String image_course;
     @ColumnInfo(name = "category_id")
-    private long category_id;
+    private int category_id;
 
-    @Ignore
-    public Courses(String image_course, String num_of_hours, String num_of_students, String price_course, String instructor_name, String topic, String name_course,long category_id) {
+
+        public Courses(String image_course, String num_of_hours, String num_of_students, String price_course, String instructor_name, String topic, String name_course,int category_id) {
         this.image_course = image_course;
         this.num_of_hours = num_of_hours;
         this.num_of_students = num_of_students;
@@ -39,17 +39,7 @@ public class Courses {
         this.category_id=category_id;
     }
 
-    public Courses(long courses_id, String name_course, String topic, String instructor_name, String price_course, String num_of_students, String num_of_hours, String image_course, long category_id) {
-        this.courses_id = courses_id;
-        this.name_course = name_course;
-        this.topic = topic;
-        this.instructor_name = instructor_name;
-        this.price_course = price_course;
-        this.num_of_students = num_of_students;
-        this.num_of_hours = num_of_hours;
-        this.image_course = image_course;
-        this.category_id = category_id;
-    }
+
 
     public long getCourses_id() {
         return courses_id;
@@ -115,11 +105,11 @@ public class Courses {
         this.image_course = image_course;
     }
 
-    public long getCategory_id() {
+    public int getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(long category_id) {
+    public void setCategory_id(int category_id) {
         this.category_id = category_id;
     }
 }

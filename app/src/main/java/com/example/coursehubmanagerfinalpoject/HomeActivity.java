@@ -32,13 +32,22 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
 
+
+        binding.bottomNav.setSelectedItemId(R.id.nav_home);
+        addFragment(new HomeFragment());
+
         binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId()==R.id.nav_myCourse){
+
+                if (item.getItemId()==R.id.nav_home){
+                    addFragment(new HomeFragment());
+
+                }else if (item.getItemId()==R.id.nav_myCourse){
                     addFragment(new MyCourseFragment());
 
-                }else if (item.getItemId()==R.id.nav_profile){
+                } else if (item.getItemId()==R.id.nav_profile) {
                     addFragment(new ProfileFragment());
                 }
                 return true;
