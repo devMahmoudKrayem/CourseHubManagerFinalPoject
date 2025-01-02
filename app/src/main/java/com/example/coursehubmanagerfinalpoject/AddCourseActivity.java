@@ -2,6 +2,8 @@ package com.example.coursehubmanagerfinalpoject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +21,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.coursehubmanagerfinalpoject.databinding.ActivityAddCourseBinding;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 
 public class AddCourseActivity extends AppCompatActivity {
@@ -56,13 +60,13 @@ public class AddCourseActivity extends AppCompatActivity {
                 if (binding.rb1.isChecked()){
                     cat_id=1;
                 } else if (binding.rb2.isChecked()) {
-                    cat_id=2;
+                    cat_id=2;;
 
                 } else if (binding.rb3.isChecked()) {
                     cat_id=3;
 
                 }
-                appDataBase.coursesDao().insertCourse(new Courses(uri.toString(),hoursCourse,StudentCourse,priceCourse,instructorNameCourse,topicCourse,nameCourse,cat_id));
+                appDataBase.coursesDao().insertCourse(new Courses(uri,hoursCourse,StudentCourse,priceCourse,instructorNameCourse,topicCourse,nameCourse,cat_id));
                 finish();
             }
         });
@@ -73,7 +77,7 @@ public class AddCourseActivity extends AppCompatActivity {
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK){
                             Intent data = result.getData();
-                            uri = data.getData();
+
                             binding.image.setImageURI(uri);
                         } else {
                             Toast.makeText(AddCourseActivity.this, "No Image Selected", Toast.LENGTH_SHORT).show();

@@ -74,10 +74,10 @@ public class HomeFragment extends Fragment {
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         TabLayout tabLayout = view.findViewById(R.id.tab);
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        adapter.addFragment(new ITFragment(), "IT");
+        vpadapter adapter = new vpadapter(getParentFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        adapter.addFragment(new ItFragment(), "IT");
         adapter.addFragment(new MathFragment(), "Math");
-        adapter.addFragment(new SiensceFragment(), "Science");
+        adapter.addFragment(new ScienceFragment(), "Science");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

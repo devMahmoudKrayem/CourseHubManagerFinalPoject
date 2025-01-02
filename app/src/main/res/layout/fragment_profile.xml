@@ -8,6 +8,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/logout"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="10dp"
+            android:src="@drawable/logout_2_svgrepo_com"/>
 
 
 
@@ -15,6 +23,7 @@
             android:id="@+id/image"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:src="@drawable/profile_round_1342_svgrepo_com"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -26,7 +35,7 @@
             android:layout_height="430dp"
             android:layout_gravity="center"
             android:layout_margin="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,6 +88,15 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <Button
+            android:id="@+id/bt_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card"
+            android:layout_marginTop="10dp"
+            android:text="Edit"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -1,24 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".HomeFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab"
+        app:tabIconTint="@color/black"
+        android:layout_marginTop="10dp"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextColor="@color/black"
+        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabSelectedTextColor="@color/black"
-        app:tabTextColor="#AF1616"
-        app:tabIndicatorColor="#3F51B5">
+        android:orientation="horizontal">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IT" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Math" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sinces" />
+
+
 
     </com.google.android.material.tabs.TabLayout>
+
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-</FrameLayout>
+</LinearLayout>

@@ -37,7 +37,7 @@ public class AdapterCourseUser extends RecyclerView.Adapter<RecyclerView.ViewHol
         MyviewHolder myviewHolder=new MyviewHolder(binding);
         myviewHolder.binding.nameCourse.setText(coursesList.get(position).getName_course());
         myviewHolder.binding.lecturerOfCourse.setText(coursesList.get(position).getInstructor_name());
-        myviewHolder.binding.courseImage.setImageURI(Uri.parse(coursesList.get(position).getImage_course()));
+        myviewHolder.binding.courseImage.setImageURI(coursesList.get(position).getImage_course());
         myviewHolder.binding.topic.setText(coursesList.get(position).getTopic());
 
         myviewHolder.binding.getRoot().setOnClickListener(new View.OnClickListener() {

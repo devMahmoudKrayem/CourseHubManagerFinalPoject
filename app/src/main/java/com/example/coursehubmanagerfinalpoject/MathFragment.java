@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -23,13 +24,13 @@ public class MathFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    AdapterCourseUser adapterCourseUser;
-    AppDataBase appDataBase;
-    List<Courses> coursesList;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    AppDataBase appDataBase ;
+    List<Courses> coursesList;
+    AdapterCourseUser adapterCourseUser;
 
     public MathFragment() {
         // Required empty public constructor
@@ -60,16 +61,17 @@ public class MathFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        appDataBase=AppDataBase.getDatabase(getContext());
-        coursesList=appDataBase.coursesDao().getAllCoursesbycat(2);
+        appDataBase=AppDataBase.getDatabase(requireContext());
+        coursesList= appDataBase.coursesDao().getAllCoursesbycat(2);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_math, container, false);
-        RecyclerView recyclerView=view.findViewById(R.id.rec_Math);
-        adapterCourseUser=new AdapterCourseUser(getContext(), coursesList, new AdapterCourseUser.ClickHandle() {
+        // Inflate the layout for this fragment
+        View view= inflater.inflate(R.layout.fragment_math, container, false);
+        RecyclerView recyclerView=view.findViewById(R.id.rec_math);
+        adapterCourseUser=  new AdapterCourseUser(requireContext(), coursesList, new AdapterCourseUser.ClickHandle() {
             @Override
             public void onItemClick(int position) {
 
@@ -81,7 +83,7 @@ public class MathFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(adapterCourseUser);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         return view;
     }
 }

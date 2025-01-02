@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         SharedPreferences sharedPreferences1=getSharedPreferences("login",MODE_PRIVATE);
         boolean remember =sharedPreferences1.getBoolean("Remember Me",false);
-        if (remember){
+        if (!remember){
             startActivity(new Intent(MainActivity.this, HomeActivity.class));
             finish();
         }
@@ -90,14 +90,17 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (loginSuccess){
                     rememberMe(email,password,name);
+                    if (appDataBase.categoriesDao().getAllCategories().isEmpty()){
+                        appDataBase.categoriesDao().insertCategories(new Categories(1,"IT"));
+                        appDataBase.categoriesDao().insertCategories(new Categories(2,"Math"));
+                        appDataBase.categoriesDao().insertCategories(new Categories(3,"Science"));
+                    }
                     Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                     startActivity(intent);
 
                     Toast.makeText(MainActivity.this, "loginSuccess", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(MainActivity.this, "Invalid Login Credentials", Toast.LENGTH_SHORT).show();
-
-
                 }
             }
         });

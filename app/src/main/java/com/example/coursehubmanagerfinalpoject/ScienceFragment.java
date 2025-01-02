@@ -3,21 +3,22 @@ package com.example.coursehubmanagerfinalpoject;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.google.android.material.tabs.TabLayout;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MyCourseFragment#newInstance} factory method to
+ * Use the {@link ScienceFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyCourseFragment extends Fragment {
+public class ScienceFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,8 +28,11 @@ public class MyCourseFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    AppDataBase appDataBase ;
+    List<Courses> coursesList;
+    AdapterCourseUser adapterCourseUser;
 
-    public MyCourseFragment() {
+    public ScienceFragment() {
         // Required empty public constructor
     }
 
@@ -38,11 +42,11 @@ public class MyCourseFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MyCourseFragment.
+     * @return A new instance of fragment ScienceFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MyCourseFragment newInstance(String param1, String param2) {
-        MyCourseFragment fragment = new MyCourseFragment();
+    public static ScienceFragment newInstance(String param1, String param2) {
+        ScienceFragment fragment = new ScienceFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -57,22 +61,29 @@ public class MyCourseFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        appDataBase=AppDataBase.getDatabase(requireContext());
+        coursesList= appDataBase.coursesDao().getAllCoursesbycat(3);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_course, container, false);
-        ViewPager viewPager = view.findViewById(R.id.viewpager_course);
-        TabLayout tabLayout = view.findViewById(R.id.tab_course);
+        // Inflate the layout for this fragment
+        View view =inflater.inflate(R.layout.fragment_science, container, false);
+        RecyclerView recyclerView=view.findViewById(R.id.rec_science);
+        adapterCourseUser=  new AdapterCourseUser(requireContext(), coursesList, new AdapterCourseUser.ClickHandle() {
+            @Override
+            public void onItemClick(int position) {
 
-        vpadapter adapter = new vpadapter(getParentFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        adapter.addFragment(new OnGoingFragment(), "OnGoing");
-        adapter.addFragment(new CompletedCourseFragment(), "Completed");
+            }
 
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
+            @Override
+            public void onrbClick(int position, String id) {
 
+            }
+        });
+        recyclerView.setAdapter(adapterCourseUser);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         return view;
     }
 }

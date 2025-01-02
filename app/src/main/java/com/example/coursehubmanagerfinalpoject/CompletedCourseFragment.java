@@ -3,21 +3,17 @@ package com.example.coursehubmanagerfinalpoject;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.tabs.TabLayout;
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MyCourseFragment#newInstance} factory method to
+ * Use the {@link CompletedCourseFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyCourseFragment extends Fragment {
+public class CompletedCourseFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,7 +24,7 @@ public class MyCourseFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MyCourseFragment() {
+    public CompletedCourseFragment() {
         // Required empty public constructor
     }
 
@@ -38,11 +34,11 @@ public class MyCourseFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MyCourseFragment.
+     * @return A new instance of fragment CompletedCourseFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MyCourseFragment newInstance(String param1, String param2) {
-        MyCourseFragment fragment = new MyCourseFragment();
+    public static CompletedCourseFragment newInstance(String param1, String param2) {
+        CompletedCourseFragment fragment = new CompletedCourseFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,16 +58,7 @@ public class MyCourseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_course, container, false);
-        ViewPager viewPager = view.findViewById(R.id.viewpager_course);
-        TabLayout tabLayout = view.findViewById(R.id.tab_course);
-
-        vpadapter adapter = new vpadapter(getParentFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        adapter.addFragment(new OnGoingFragment(), "OnGoing");
-        adapter.addFragment(new CompletedCourseFragment(), "Completed");
-
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
+        View view= inflater.inflate(R.layout.fragment_completed_course, container, false);
 
         return view;
     }

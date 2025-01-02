@@ -1,5 +1,7 @@
 package com.example.coursehubmanagerfinalpoject;
 
+import android.net.Uri;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -23,12 +25,12 @@ public class Courses {
     @ColumnInfo(name = "num_of_hours")
     private String num_of_hours;
     @ColumnInfo(name = "image_course")
-    private String image_course;
+    private Uri image_course;
     @ColumnInfo(name = "category_id")
     private int category_id;
 
 
-        public Courses(String image_course, String num_of_hours, String num_of_students, String price_course, String instructor_name, String topic, String name_course,int category_id) {
+        public Courses(Uri image_course, String num_of_hours, String num_of_students, String price_course, String instructor_name, String topic, String name_course,int category_id) {
         this.image_course = image_course;
         this.num_of_hours = num_of_hours;
         this.num_of_students = num_of_students;
@@ -97,11 +99,11 @@ public class Courses {
         this.num_of_hours = num_of_hours;
     }
 
-    public String getImage_course() {
+    public Uri getImage_course() {
         return image_course;
     }
 
-    public void setImage_course(String image_course) {
+    public void setImage_course(Uri image_course) {
         this.image_course = image_course;
     }
 

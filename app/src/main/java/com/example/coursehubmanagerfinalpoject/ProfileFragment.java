@@ -1,6 +1,7 @@
 package com.example.coursehubmanagerfinalpoject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -9,7 +10,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,9 +85,40 @@ public class ProfileFragment extends Fragment {
         EditText ed_name=view.findViewById(R.id.ed_name) ;
         EditText ed_email=view.findViewById(R.id.ed_email) ;
         EditText ed_password=view.findViewById(R.id.ed_password);
+        Button bt_edit=view.findViewById(R.id.bt_edit);
+        ImageView im_logOut=view.findViewById(R.id.logout);
+        im_logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),MainActivity.class));
+            }
+        });
         ed_name.setText(user.getName());
         ed_email.setText(user.getEmail());
         ed_password.setText(user.getPassword());
+        bt_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String updateEmail =ed_email.getText().toString();
+                String updateName =ed_name.getText().toString();
+                String updatePassword =ed_password.getText().toString();
+                if (!updateEmail.isEmpty()&&!updateName.isEmpty()&&!updatePassword.isEmpty()){
+                    user.setName(updateName);
+                    user.setEmail(updateEmail);
+                    user.setPassword(updatePassword);
+                    appDataBase.userDao().updateUser(user);
+                    Toast.makeText(requireContext(), "is update", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Toast.makeText(requireContext(), "is not update", Toast.LENGTH_SHORT).show();
+                }
+
+
+//                User user1=new User(ed_email.getText().toString(),ed_password.getText().toString(),ed_name.getText().toString());
+//                appDataBase.userDao().updateUser(user1);
+
+            }
+        });
         return view;
     }
 }
